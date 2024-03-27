@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth from 'next-auth';
 
 // import Apple from "next-auth/providers/apple"
 // import Atlassian from "next-auth/providers/atlassian"
@@ -22,9 +22,9 @@ import NextAuth from "next-auth"
 // import Foursquare from "next-auth/providers/foursquare"
 // import Freshbooks from "next-auth/providers/freshbooks"
 // import Fusionauth from "next-auth/providers/fusionauth"
-import GitHub from "next-auth/providers/github"
+// import GitHub from "next-auth/providers/github"
 // import Gitlab from "next-auth/providers/gitlab"
-// import Google from "next-auth/providers/google"
+import Google from 'next-auth/providers/google';
 // import Hubspot from "next-auth/providers/hubspot"
 // import Instagram from "next-auth/providers/instagram"
 // import Kakao from "next-auth/providers/kakao"
@@ -63,11 +63,11 @@ import GitHub from "next-auth/providers/github"
 // import Zoho from "next-auth/providers/zoho"
 // import Zoom from "next-auth/providers/zoom"
 
-import type { NextAuthConfig } from "next-auth"
+import type { NextAuthConfig } from 'next-auth';
 
 export const config = {
   theme: {
-    logo: "https://next-auth.js.org/img/logo/logo-sm.png",
+    logo: 'https://next-auth.js.org/img/logo/logo-sm.png',
   },
   providers: [
     // Apple,
@@ -92,9 +92,9 @@ export const config = {
     // Foursquare,
     // Freshbooks,
     // Fusionauth,
-    GitHub,
+    // GitHub,
     // Gitlab,
-    // Google,
+    Google,
     // Hubspot,
     // Instagram,
     // Kakao,
@@ -133,18 +133,21 @@ export const config = {
     // Zoho,
     // Zoom,
   ],
-  basePath: "/auth",
+  basePath: '/auth',
   callbacks: {
     authorized({ request, auth }) {
-      const { pathname } = request.nextUrl
-      if (pathname === "/middleware-example") return !!auth
-      return true
+      const { pathname } = request.nextUrl;
+      console.log({ pathname });
+      if (pathname === '/middleware-example') return !!auth;
+      return true;
     },
     jwt({ token, trigger, session }) {
-      if (trigger === "update") token.name = session.user.name
-      return token
+      console.log("jwt is working...");
+      console.log({ token });
+      if (trigger === 'update') token.name = session.user.name;
+      return token;
     },
   },
-} satisfies NextAuthConfig
+} satisfies NextAuthConfig;
 
-export const { handlers, auth, signIn, signOut } = NextAuth(config)
+export const { handlers, auth, signIn, signOut } = NextAuth(config);
