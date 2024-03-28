@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="flex flex-col gap-4 px-4 my-4 mx-0 w-full text-sm sm:flex-row sm:justify-between sm:items-center sm:px-6 sm:my-12 sm:mx-auto sm:max-w-3xl sm:h-5">
       <div className="flex flex-col gap-4 sm:flex-row">
-        <CustomLink href="https://nextjs.authjs.dev">Documentation</CustomLink>
+        {/* <CustomLink href="https://nextjs.authjs.dev">Documentation</CustomLink>
         <CustomLink href="https://www.npmjs.com/package/next-auth">
           NPM
         </CustomLink>
@@ -22,7 +22,7 @@ export default function Footer() {
         />
         <CustomLink href="https://npmjs.org/package/next-auth">
           {packageJSON.version}
-        </CustomLink>
+        </CustomLink> */}
       </div>
     </footer>
   )

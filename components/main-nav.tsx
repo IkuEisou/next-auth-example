@@ -32,7 +32,7 @@ export function MainNav() {
       </CustomLink>
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem>
+          {/* <NavigationMenuItem>
             <NavigationMenuTrigger className="px-2">
               Server Side
             </NavigationMenuTrigger>
@@ -57,7 +57,7 @@ export function MainNav() {
             >
               Client Side
             </NavigationMenuLink>
-          </NavigationMenuItem>
+          </NavigationMenuItem> */}
         </NavigationMenuList>
       </NavigationMenu>
     </div>
