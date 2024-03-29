@@ -1,26 +1,27 @@
-"use client"
+'use client';
 
-import Image from "next/image"
+// import Image from 'next/image';
 
-import { cn } from "@/lib/utils"
-import CustomLink from "./custom-link"
+import { cn } from '@/lib/utils';
+import CustomLink from './custom-link';
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
+  // NavigationMenuContent,
+  // NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "./ui/navigation-menu"
-import React from "react"
-import { Button } from "./ui/button"
+  // NavigationMenuTrigger,
+  // navigationMenuTriggerStyle,
+} from './ui/navigation-menu';
+import React from 'react';
+import { Button } from './ui/button';
+import { MilizeLogo } from '@/components/logo/Milize';
 
 export function MainNav() {
   return (
-    <div className="flex gap-4 items-center">
-      <CustomLink href="/">
-        <Button variant="ghost" className="p-0">
+    <div className='flex gap-4 items-center'>
+      <CustomLink href='https://milize.co.jp/'>
+        {/* <Button variant="ghost" className="p-0">
           <Image
             src="/logo.png"
             alt="Home"
@@ -28,7 +29,8 @@ export function MainNav() {
             height="32"
             className="min-w-8"
           />
-        </Button>
+        </Button> */}
+        <MilizeLogo className='min-w-8' width='180' height='32'></MilizeLogo>
       </CustomLink>
       <NavigationMenu>
         <NavigationMenuList>
@@ -61,12 +63,12 @@ export function MainNav() {
         </NavigationMenuList>
       </NavigationMenu>
     </div>
-  )
+  );
 }
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
@@ -74,18 +76,18 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
             className
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="text-sm leading-snug line-clamp-2 text-muted-foreground">
+          <div className='text-sm font-medium leading-none'>{title}</div>
+          <p className='text-sm leading-snug line-clamp-2 text-muted-foreground'>
             {children}
           </p>
         </a>
       </NavigationMenuLink>
     </li>
-  )
-})
-ListItem.displayName = "ListItem"
+  );
+});
+ListItem.displayName = 'ListItem';
