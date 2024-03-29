@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  google-oauth2:
+    build: .
+    container_name: google-oauth2-BabyUIAGI
+    ports:
+      - 3000:3000
