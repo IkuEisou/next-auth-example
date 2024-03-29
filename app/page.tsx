@@ -1,4 +1,4 @@
-// import CustomLink from "@/components/custom-link"
+import CustomLink from '@/components/custom-link';
 import { auth } from 'auth';
 
 export default async function Index() {
@@ -20,30 +20,33 @@ export default async function Index() {
         allowFullScreen
         sandbox='allow-scripts allow-same-origin'
       />
-      // <div className="flex flex-col gap-6">
-      //   <h1 className="text-3xl font-bold">NextAuth.js Example</h1>
-      //   <div>
-      //     This is an example site to demonstrate how to use{" "}
-      //     <CustomLink href="https://nextjs.authjs.dev">NextAuth.js</CustomLink>{" "}
-      //     for authentication. Check out the{" "}
-      //     <CustomLink href="/server-example" className="underline">
-      //       Server
-      //     </CustomLink>{" "}
-      //     and the{" "}
-      //     <CustomLink href="/client-example" className="underline">
-      //       Client
-      //     </CustomLink>{" "}
-      //     examples to see how to secure pages and get session data.
-      //   </div>
-      //   <div className="flex flex-col rounded-md bg-neutral-100">
-      //     <div className="p-4 font-bold rounded-t-md bg-neutral-200">
-      //       Current Session
-      //     </div>
-      //     <pre className="py-6 px-4 whitespace-pre-wrap break-all">
-      //       {JSON.stringify(session, null, 2)}
-      //     </pre>
-      //   </div>
-      // </div>
+    );
+  } else {
+    return (
+      <div className='flex flex-col gap-6'>
+        <h1 className='text-3xl font-bold'>サインインをお願い致します。</h1>
+        {/* <div>
+          This is an example site to demonstrate how to use{' '}
+          <CustomLink href='https://nextjs.authjs.dev'>NextAuth.js</CustomLink>{' '}
+          for authentication. Check out the{' '}
+          <CustomLink href='/server-example' className='underline'>
+            Server
+          </CustomLink>{' '}
+          and the{' '}
+          <CustomLink href='/client-example' className='underline'>
+            Client
+          </CustomLink>{' '}
+          examples to see how to secure pages and get session data.
+        </div> */}
+        <div className='flex flex-col rounded-md bg-neutral-100'>
+          <div className='p-4 font-bold rounded-t-md bg-neutral-200'>
+            最近のログイン情報
+          </div>
+          <pre className='py-6 px-4 whitespace-pre-wrap break-all'>
+            {JSON.stringify(session, null, 2)}
+          </pre>
+        </div>
+      </div>
     );
   }
 }
