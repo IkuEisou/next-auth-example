@@ -11,7 +11,7 @@ export default async function Index() {
     };
     return (
       <iframe
-        src='http://localhost:7845/ja'
+        src={process.env.MAIN_FRAME_URL}
         width='100%'
         height='800px'
         allowFullScreen
@@ -19,6 +19,6 @@ export default async function Index() {
       />
     );
   } else {
-    redirect('http://localhost:3000/auth/signin');
+    redirect('/auth/signin');
   }
 }
