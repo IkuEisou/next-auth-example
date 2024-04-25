@@ -15,7 +15,7 @@ export default async function Index() {
         width='100%'
         height='800px'
         allowFullScreen
-        sandbox='allow-scripts allow-same-origin'
+        sandbox='allow-scripts allow-same-origin allow-forms'
       />
     );
   } else {
