@@ -19,9 +19,15 @@ COPY package*.json ./
 RUN npm install
 # RUN npm exec openai migrate
 COPY . .
-RUN bash -l -c 'echo export AUTH_SECRET="$(openssl rand -hex 32)" >> .env.local'
-RUN npm run build
+# Local
+# RUN bash -l -c 'echo export AUTH_SECRET="$(openssl rand -hex 32)" >> .env.local'
+# Production
+# RUN bash -l -c 'echo export AUTH_SECRET="$(openssl rand -base64 33)" >> .env.prod'
+RUN AUTH_SECRET=="$(openssl rand -base64 33)" npm run build
 
 EXPOSE 3000
+# Local
+# ENTRYPOINT [ "npm", "run", "dev" ]
 
-ENTRYPOINT [ "npm", "run", "dev" ]
+# Production
+ENTRYPOINT [ "npm", "run", "start-prod" ]

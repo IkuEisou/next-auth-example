@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "env-show": "export $(cat .env.prod | xargs) && env",
+    "start-prod": "export $(cat .env.prod | xargs) && next start"
   },
   "author": "Iain Collins <me@iaincollins.com>",
   "contributors": [
