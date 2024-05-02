@@ -69,6 +69,7 @@ export const config = {
   theme: {
     logo: 'https://next-auth.js.org/img/logo/logo-sm.png',
   },
+  trustHost: true,
   providers: [
     // Apple,
     // Atlassian,
@@ -133,16 +134,29 @@ export const config = {
     // Zoho,
     // Zoom,
   ],
+  // cookies: {
+  //   pkceCodeVerifier: {
+  //     name: 'next-auth.pkce.code_verifier',
+  //     options: {
+  //       httpOnly: true,
+  //       // sameSite: 'none',
+  //       path: 'http://localhost:7845/ja',
+  //       secure: true,
+  //     },
+  //   },
+  // },
   basePath: '/auth',
   callbacks: {
     authorized({ request, auth }) {
       const { pathname } = request.nextUrl;
       console.log({ pathname });
+      console.log(process.env.AUTH_SECRET);
+      console.log(process.env.AUTH_GOOGLE_ID);
+      console.log(process.env.AUTH_GOOGLE_SECRET);
       if (pathname === '/middleware-example') return !!auth;
       return true;
     },
     jwt({ token, trigger, session }) {
-      console.log("jwt is working...");
       console.log({ token });
       if (trigger === 'update') token.name = session.user.name;
       return token;
