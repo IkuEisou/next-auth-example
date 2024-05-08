@@ -24,7 +24,7 @@ RUN bash -l -c 'echo export AUTH_SECRET="$(openssl rand -hex 32)" >> .env.local'
 
 # Production
 # RUN bash -l -c 'echo export AUTH_SECRET="$(openssl rand -base64 33)" >> .env.prod'
-RUN AUTH_SECRET=="$(openssl rand -base64 33)" npm run build
+#RUN AUTH_SECRET=="$(openssl rand -base64 33)" npm run build
 # ENV NODE_ENV production
 # RUN addgroup --system --gid 1001 nodejs
 # RUN adduser --system --uid 1001 nextjs
