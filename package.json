@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "env-show": "export $(cat .env.prod | xargs) && env",
-    "start-prod": "export $(cat .env.prod | xargs) && next start --hostname 0.0.0.0"
+    "start-prod": "export $(cat .env.prod | xargs) && next build && next start --hostname 0.0.0.0"
   },
   "author": "Iain Collins <me@iaincollins.com>",
   "contributors": [
