@@ -19,6 +19,7 @@ export default async function Index() {
       />
     );
   } else {
-    redirect('/auth/signin');
+    // redirect('/auth/signin');
+    redirect('/signup');
   }
 }

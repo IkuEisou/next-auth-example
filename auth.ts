@@ -62,8 +62,11 @@ import Google from 'next-auth/providers/google';
 // import Zitadel from "next-auth/providers/zitadel"
 // import Zoho from "next-auth/providers/zoho"
 // import Zoom from "next-auth/providers/zoom"
-
+import Credentials from 'next-auth/providers/credentials';
 import type { NextAuthConfig } from 'next-auth';
+import { sql } from '@vercel/postgres';
+import { compare } from 'bcryptjs';
+// import { redirect } from 'next/navigation';
 
 export const config = {
   theme: {
@@ -133,6 +136,45 @@ export const config = {
     // Zitadel,
     // Zoho,
     // Zoom,
+    Credentials({
+      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
+      // e.g. domain, username, password, 2FA token, etc.
+      credentials: {
+        email: { placeholder: 'example@user.com', type: 'email' },
+        password: { type: 'password' },
+      },
+      authorize: async (credentials) => {
+        // logic to verify if user exists
+        const response = await sql`
+        SELECT * FROM Users WHERE email=${credentials?.email}`;
+        const user = response.rows[0];
+
+        if (!user) {
+          // No user found, so this is their first attempt to login
+          // meaning this is also the place you could do registration
+          // throw new Error('User not found.');
+          console.log(credentials?.email + '  not found!');
+          // redirect('/signup');
+          return null;
+        }
+
+        // logic to salt and hash password
+        const passwordCorrect = await compare(
+          credentials?.password || '',
+          user.password
+        );
+
+        if (passwordCorrect) {
+          return {
+            id: user.id,
+            email: user.email,
+          };
+        }
+
+        // return user object with the their profile data
+        return user;
+      },
+    }),
   ],
   // cookies: {
   //   pkceCodeVerifier: {
@@ -150,9 +192,9 @@ export const config = {
     authorized({ request, auth }) {
       const { pathname } = request.nextUrl;
       console.log({ pathname });
-      console.log(process.env.AUTH_SECRET);
-      console.log(process.env.AUTH_GOOGLE_ID);
-      console.log(process.env.AUTH_GOOGLE_SECRET);
+      // console.log(process.env.AUTH_SECRET);
+      // console.log(process.env.AUTH_GOOGLE_ID);
+      // console.log(process.env.AUTH_GOOGLE_SECRET);
       if (pathname === '/middleware-example') return !!auth;
       return true;
     },
@@ -161,6 +203,13 @@ export const config = {
       if (trigger === 'update') token.name = session.user.name;
       return token;
     },
+    // async redirect({ url, baseUrl }) {
+    //   // Allows relative callback URLs
+    //   if (url.startsWith("/signup")) return `${baseUrl}${url}`
+    //   // Allows callback URLs on the same origin
+    //   else if (new URL(url).origin === baseUrl) return url
+    //   return baseUrl
+    // }
   },
 } satisfies NextAuthConfig;
 
