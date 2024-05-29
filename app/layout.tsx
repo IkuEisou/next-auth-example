@@ -16,7 +16,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-col justify-between w-full h-full min-h-screen">
+        <div className="flex flex-col justify-between w-full h-full min-h-screen" style={{background: "#4968B6"}}>
           <Header />
           <main className="flex-auto w-full  px-4 py-4 mx-auto sm:px-6 md:py-6">
             {children}
