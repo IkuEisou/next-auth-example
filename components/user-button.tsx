@@ -25,12 +25,12 @@ export default async function UserButton() {
         className='hidden text-sm sm:inline-flex'
         style={{ color: '#FEFEFE' }}
       >
-        {session.user.email}
+        {session.user.name}
       </span>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant='ghost' className='relative w-8 h-8 rounded-full'>
-          <Menu></Menu>
+            <Menu></Menu>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className='w-56' align='end' forceMount>
