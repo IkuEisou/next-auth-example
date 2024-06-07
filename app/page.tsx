@@ -13,7 +13,7 @@ export default async function Index() {
       <iframe
         src={process.env.MAIN_FRAME_URL}
         width='100%'
-        height='800px'
+        height='880px'
         allowFullScreen
         sandbox='allow-scripts allow-same-origin allow-forms'
       />
