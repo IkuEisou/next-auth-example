@@ -1,17 +1,20 @@
 import { auth } from 'auth';
-import { redirect } from 'next/navigation';
+import { redirect} from 'next/navigation';
 
 export default async function Index() {
   const session = await auth();
   if (session?.user) {
+    const email = session.user.email;
     session.user = {
       name: session.user.name,
-      email: session.user.email,
-      image: session.user.image,
+      email: email,
+      image: session.user.picture,
     };
+    const url = process.env.MAIN_FRAME_URL + '?email=' + email;
+    // console.log({ url });
     return (
       <iframe
-        src={process.env.MAIN_FRAME_URL}
+        src={url}
         width='100%'
         height='880px'
         allowFullScreen
